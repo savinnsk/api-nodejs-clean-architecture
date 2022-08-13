@@ -5,6 +5,6 @@
         "target": "ES3",
         "esModuleInterop": true,
         "allowJs": true,
-        "strictNullChecks": false
+        
     }
 }
