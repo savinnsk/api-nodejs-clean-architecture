@@ -4,6 +4,7 @@
         "module": "commonjs",
         "target": "ES3",
         "esModuleInterop": true,
-        "allowJs": true
+        "allowJs": true,
+        "strictNullChecks": false
     }
 }
