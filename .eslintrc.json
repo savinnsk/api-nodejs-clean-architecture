@@ -5,6 +5,9 @@
     },
     "rules": {
         "@typescript-eslint/strict-boolean-expressions":"off",
-        "@typescript-eslint/quotes" :"off" 
+        "@typescript-eslint/quotes" :"off",
+        "@typescript-eslint/no-var-requires":"off",
+        "eslint-disable semi":"off",
+        "eslint-disable quotes": "off"
     }
 }
