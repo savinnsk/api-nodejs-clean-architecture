@@ -8,6 +8,8 @@
         "@typescript-eslint/quotes" :"off",
         "@typescript-eslint/no-var-requires":"off",
         "eslint-disable semi":"off",
-        "eslint-disable quotes": "off"
+        "eslint-disable quotes": "off",
+        "@typescript-eslint/method-signature-style": "off",
+        "@typescript-eslint/return-await":"off"
     }
 }
