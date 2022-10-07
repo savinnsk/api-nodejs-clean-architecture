@@ -1,3 +1,4 @@
+/* eslint-disable prefer-promise-reject-errors */
 import bcrypt from 'bcrypt'
 import { BcryptAdapter } from './bcrypt-adapter'
 
@@ -26,4 +27,11 @@ describe('Bcrypt Adapter', () => {
     const hash = await sut.encrypt('any_value')
     expect(hash).toBe(hash)
   })
+
+  /* test('Should throw if bcrypt throws', async () => {
+    const sut = makeSut()
+    const promise = sut.encrypt('any_value')
+    jest.spyOn(bcrypt, 'hash').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    await expect(promise).rejects.toThrow()
+  }) */
 })
