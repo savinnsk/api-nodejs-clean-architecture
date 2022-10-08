@@ -13,5 +13,6 @@
         "@typescript-eslint/return-await":"off",
         "@typescript-eslint/no-floating-promises":"off",
         "rejecteslintpromise/param-names":"off"
+        
     }
 }
