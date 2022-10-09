@@ -13,4 +13,4 @@ module.exports = {
     },
     autoStart: false,
   },
-};
+}
