@@ -6,6 +6,7 @@
     "rules": {
         "@typescript-eslint/strict-boolean-expressions":"off",
         "@typescript-eslint/quotes" :"off",
+        "@typescript-eslint/restrict-template-expressions":"off",
         "@typescript-eslint/no-var-requires":"off",
         "eslint-disable semi":"off",
         "eslint-disable quotes": "off",
