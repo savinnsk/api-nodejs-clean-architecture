@@ -13,7 +13,8 @@
         "@typescript-eslint/method-signature-style": "off",
         "@typescript-eslint/return-await":"off",
         "@typescript-eslint/no-floating-promises":"off",
-        "rejecteslintpromise/param-names":"off"
+        "rejecteslintpromise/param-names":"off",
+        "@typescript-eslint/no-misused-promises":"off"
         
     }
 }
