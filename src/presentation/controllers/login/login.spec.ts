@@ -10,19 +10,27 @@ import { LoginController } from "./login"
   }
 }) */
 
-const makeSut = (): LoginController => {
-  return new LoginController()
+interface SutTypes {
+  sut: LoginController
+}
+
+const makeSut = (): SutTypes => {
+  const sut = new LoginController()
+
+  return {
+    sut
+  }
 }
 
 describe("Login Controller", () => {
   test("should return 400 if no email is provider", async () => {
-    const sut = makeSut()
+    const { sut } = makeSut()
     const httpResponse = await sut.handle({ body: { password: "any_password" } })
     expect(httpResponse).toEqual(badRequest(new MissingParamsError("email")))
   })
 
   test("should return 400 if no password is provider", async () => {
-    const sut = makeSut()
+    const { sut } = makeSut()
     const httpResponse = await sut.handle({ body: { email: "any_mail@mail.com" } })
     expect(httpResponse).toEqual(badRequest(new MissingParamsError("password")))
   })
