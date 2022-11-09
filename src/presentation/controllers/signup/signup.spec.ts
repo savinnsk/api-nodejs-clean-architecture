@@ -174,7 +174,6 @@ describe('Sing up Controller', () => {
     })
 
     const httpResponse = await sut.handle(makeFakeRequest())
-    console.log(httpResponse)
     expect(httpResponse).toEqual(serverError(new ServerError(null)))
   })
 
