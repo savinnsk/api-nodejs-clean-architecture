@@ -1,7 +1,7 @@
 
 import { Authentication } from "../../../domain/usecases/authentication"
 import { InvalidParamsError, MissingParamsError } from "../../errors"
-import { badRequest, serverError, unauthorized } from "../../helpers/http-helper"
+import { badRequest, ok, serverError, unauthorized } from "../../helpers/http-helper"
 import { Controller, HttpRequest, HttpResponse } from "../../protocols"
 import { EmailValidator } from "../signup/signup-protocols"
 
@@ -32,6 +32,8 @@ export class LoginController implements Controller {
       }
 
       if (!isValid) return badRequest(new InvalidParamsError("email"))
+
+      return ok({ accessToken })
     } catch (err) {
       return serverError(err)
     }
