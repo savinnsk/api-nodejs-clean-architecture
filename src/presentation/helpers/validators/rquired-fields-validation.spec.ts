@@ -6,7 +6,7 @@ const makeSut = (): RequiredFieldsValidation => {
 }
 
 describe("RequiredField Validation", () => {
-  test("should  ", () => {
+  test("should return a MissingParamError if validator throws", () => {
     const sut = makeSut()
     const error = sut.validate({ name: "any_name" })
     expect(error).toEqual(new MissingParamsError("field"))
