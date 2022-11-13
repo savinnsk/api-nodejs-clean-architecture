@@ -80,7 +80,7 @@ describe("DbAuthentication useCase", () => {
     expect(accessToken).toBeNull()
   })
 
-  test("should call HashComparer with correct password", async () => {
+  test("should call HashComparer with correct values", async () => {
     const { sut, hashComparerStub } = makeSut()
     const compareSpy = jest.spyOn(hashComparerStub, "compare")
     await sut.auth(makeFakeAuthentication())
