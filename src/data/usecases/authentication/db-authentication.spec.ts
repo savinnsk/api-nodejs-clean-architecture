@@ -1,5 +1,6 @@
 import { AuthenticationDTO } from "../../../domain/usecases/authentication"
 import { HashComparer } from "../../protocols/criptography/hash-comparer"
+import { TokenGenerator } from "../../protocols/criptography/token-generator"
 import { LoadAccountByEmailRepository } from "../../protocols/db/load-account-email-repository"
 import { AccountModel } from "../add-account/db-add-account-protocols"
 import { DbAuthentication } from "./db-authentication"
@@ -37,20 +38,32 @@ const makeHashComparerStub = (): HashComparer => {
   return new HashComparerStub()
 }
 
+const makeTokenGeneratorStub = (): TokenGenerator => {
+  class TokenGenerateStub implements TokenGenerator {
+    async generate (id: string): Promise<string> {
+      return new Promise(resolve => resolve("any_token"))
+    }
+  }
+  return new TokenGenerateStub()
+}
+
 interface SutTypes {
   sut: DbAuthentication
   loadAccountByEmailRepositoryStub: LoadAccountByEmailRepository
   hashComparerStub: HashComparer
+  tokenGeneratorStub: TokenGenerator
 }
 
 const makeSut = (): SutTypes => {
   const loadAccountByEmailRepositoryStub = makeLoadAccountByEmailRepositoryStub()
   const hashComparerStub = makeHashComparerStub()
-  const sut = new DbAuthentication(loadAccountByEmailRepositoryStub, hashComparerStub)
+  const tokenGeneratorStub = makeTokenGeneratorStub()
+  const sut = new DbAuthentication(loadAccountByEmailRepositoryStub, hashComparerStub, tokenGeneratorStub)
   return {
     sut,
     loadAccountByEmailRepositoryStub,
-    hashComparerStub
+    hashComparerStub,
+    tokenGeneratorStub
   }
 }
 
@@ -103,5 +116,13 @@ describe("DbAuthentication useCase", () => {
     const accessToken = await sut.auth(makeFakeAuthentication())
 
     expect(accessToken).toBeNull()
+  })
+
+  test("should call TokenGenerator with correct id", async () => {
+    const { sut, tokenGeneratorStub } = makeSut()
+    const tokenSpy = jest.spyOn(tokenGeneratorStub, "generate")
+    await sut.auth(makeFakeAuthentication())
+
+    expect(tokenSpy).toHaveBeenCalledWith("any_id")
   })
 })
