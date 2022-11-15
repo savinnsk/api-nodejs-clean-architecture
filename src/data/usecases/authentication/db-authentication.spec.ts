@@ -1,6 +1,6 @@
 import { AuthenticationDTO } from "../../../domain/usecases/authentication"
-import { HashComparer } from "../../protocols/criptography/hash-comparer"
-import { TokenGenerator } from "../../protocols/criptography/token-generator"
+import { HashComparer } from "../../protocols/cryptography/cryptography"
+import { TokenGenerator } from "../../protocols/cryptography/token-generator"
 import { LoadAccountByEmailRepository } from "../../protocols/db/load-account-email-repository"
 import { AccountModel } from "../add-account/db-add-account-protocols"
 import { DbAuthentication } from "./db-authentication"
