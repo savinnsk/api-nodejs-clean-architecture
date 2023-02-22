@@ -1,8 +1,6 @@
-const username = "savinnsk"
-const password = "EGA130pha100"
-
 export default {
-  mongoUrl: process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/clean-code-api',
+  mongoUrl: process.env.MONGO_URL || "mongodb://127.0.0.1:27017/",
   port: process.env.PORT || 5050,
-  mongoAPiCluster: `mongodb+srv://${username}:${password}@apicluster0.u3gd8.mongodb.net/?retryWrites=true&w=majority`
-}
+
+  mongoAPiCluster: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@savinnsk.bmso1rh.mongodb.net/?retryWrites=true&w=majority`,
+};
