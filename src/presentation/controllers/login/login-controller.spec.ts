@@ -1,9 +1,9 @@
 import { ServerError } from "../../errors"
 import { badRequest, ok, serverError, unauthorized } from "../../helpers/http/http-helper"
-import { Validation } from "../signup/signup-protocols"
+import { Validation } from "../signup/signup-controller-protocols"
 import { HttpRequest } from "../../protocols"
 import { Authentication, AuthenticationDTO } from "../../../domain/usecases/authentication"
-import { LoginController } from "./login"
+import { LoginController } from "./login-controller"
 
 const makeFakeHttpRequest = (): HttpRequest => ({
   body: {

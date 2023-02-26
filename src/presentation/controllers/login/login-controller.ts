@@ -2,7 +2,7 @@
 import { Authentication } from "../../../domain/usecases/authentication"
 import { badRequest, ok, serverError, unauthorized } from "../../helpers/http/http-helper"
 import { Controller, HttpRequest, HttpResponse } from "../../protocols"
-import { Validation } from "../signup/signup-protocols"
+import { Validation } from "../signup/signup-controller-protocols"
 
 export class LoginController implements Controller {
   private readonly validation: Validation

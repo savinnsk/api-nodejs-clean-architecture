@@ -3,7 +3,7 @@ import { RequiredFieldsValidation } from "../../../presentation/helpers/validato
 import { ValidationComposite } from "../../../presentation/helpers/validators/validation-composite"
 import { Validation } from "../../../presentation/protocols/validation-helper"
 import { EmailValidator } from "../../../presentation/protocols/email-validator"
-import { makeLoginValidation } from "./login-validation"
+import { makeLoginValidation } from "./login-validation-factory"
 
 jest.mock("../../../presentation/helpers/validators/validation-composite")
 

@@ -1,5 +1,5 @@
-import { LoadAccountByEmailRepository } from "../../../../data/protocols/db/load-account-email-repository";
-import { UpdateAccessTokenRepository } from "../../../../data/protocols/db/update-access-token-repository";
+import { LoadAccountByEmailRepository } from "../../../../data/protocols/db/account/load-account-email-repository";
+import { UpdateAccessTokenRepository } from "../../../../data/protocols/db/account/update-access-token-repository";
 import {
   AddAccountRepository,
   AccountModel,
