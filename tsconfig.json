@@ -1,10 +1,11 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist",
-        "module": "commonjs",
-        "target": "ES3",
-        "esModuleInterop": true,
-        "allowJs": true,
-        
-    }
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "ES3",
+    "esModuleInterop": true,
+    "allowJs": true
+  },
+  "include": ["src"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }
