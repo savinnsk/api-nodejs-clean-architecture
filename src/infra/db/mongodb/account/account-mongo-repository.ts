@@ -7,6 +7,7 @@ import {
   MongoHelper,
 } from "./account-protocols";
 
+import { ObjectId } from "mongodb";
 export class AccountMongoRepository
   implements
     AddAccountRepository,
@@ -33,12 +34,15 @@ export class AccountMongoRepository
     const accountCollection = await MongoHelper.getCollection("accounts");
     await accountCollection.updateOne(
       {
-        _id: id as any,
+        _id: new ObjectId(id) as any,
       },
       {
         $set: {
           accessToken: token,
         },
+      },
+      {
+        upsert: true,
       }
     );
   }
