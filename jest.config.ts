@@ -1,7 +1,4 @@
-/* eslint-disable semi */
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
-module.exports = {
+export default {
   roots: ["<rootDir>/src"],
   collectCoverageFrom: ["<rootDir>/src/**/*.ts", "!<rootDir>/src/main/**"],
   coverageDirectory: "coverage",
