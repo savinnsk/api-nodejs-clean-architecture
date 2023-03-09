@@ -3,4 +3,4 @@ dist
 coverage
 .vscode
 .env
-.env-development.ts
+data
