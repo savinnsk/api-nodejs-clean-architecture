@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo-clean-architecture
+    restart: always
+    # mapper port from host to container
+    ports:
+      - "27017:27017"
+    # volumes keeps the data even if the container is removed
+    volumes:
+      - ./data:/data/db
+  api:
+    # build the image from the Dockerfile in the current directory
+    build: .
+    container_name: api-clean-architecture
+    image: clean-node-api
+    restart: always
+    command: npm start
+    ports:
+      - "5050:5050"
+    # to connect to the mongo container
+    environment:
+      - PORT=5050
+      - JWT_SECRET=batata
+      - MONGO_USER=savio
+      - MONGO_PASSWORD=7anC8Rvcp8UQt6JL
+    volumes:
+      - ./dist:/usr/src/clean-node-api/dist
+    links:
+      - mongo
