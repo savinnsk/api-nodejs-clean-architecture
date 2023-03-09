@@ -4,7 +4,8 @@
     "module": "commonjs",
     "target": "ES3",
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": true,
+    "sourceMap": true
   },
   "include": ["src"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"]

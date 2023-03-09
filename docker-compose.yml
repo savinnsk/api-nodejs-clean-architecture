@@ -17,9 +17,11 @@ services:
     container_name: api-clean-architecture
     image: clean-node-api
     restart: always
-    command: npm start
+    # this script will create a websocket to debug the application typescript
+    command: npm run debug
     ports:
       - "5050:5050"
+      - "9222:9222"
     # to connect to the mongo container
     environment:
       - PORT=5050
@@ -28,5 +30,6 @@ services:
       - MONGO_PASSWORD=7anC8Rvcp8UQt6JL
     volumes:
       - ./dist:/usr/src/clean-node-api/dist
+      - ./package.json:/usr/src/clean-node-api/package.json
     links:
       - mongo

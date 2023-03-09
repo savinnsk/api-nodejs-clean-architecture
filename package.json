@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/main/server.js",
-    "up": "npm run build && docker compose up",
+    "debug": "node --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
+    "up": "npm run build && rimraf dist/main/routes/login.routes.js.map && docker compose up",
     "down": "docker compose down",
     "build": "rimraf dist && tsc",
     "test": "jest --passWithNoTests --runInBand --no-cache --forceExit",
@@ -43,6 +44,7 @@
     "jest-environment-node": "27",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.0.1",
+    "source-map-support": "^0.5.21",
     "validator": "^13.7.0"
   },
   "engines": {
