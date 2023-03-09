@@ -3,7 +3,7 @@ version: "3.7"
 services:
   mongo:
     image: mongo:6
-    container_name: mongo-clean-architecture
+    container_name: mongo-container
     restart: always
     # mapper port from host to container
     ports:
@@ -13,12 +13,14 @@ services:
       - ./data:/data/db
   api:
     # build the image from the Dockerfile in the current directory
-    build: .
-    container_name: api-clean-architecture
-    image: clean-node-api
+    # build: .
+    container_name: api-container
+    # now we are creating our app container from docker compose
+    image: node:18
+    working_dir: /usr/src/clean-node-api
     restart: always
     # this script will create a websocket to debug the application typescript
-    command: npm run debug
+    command: bash -c "npm install && npm run debug"
     ports:
       - "5050:5050"
       - "9222:9222"
