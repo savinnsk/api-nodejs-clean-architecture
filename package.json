@@ -1,11 +1,11 @@
 {
   "name": "clean_code_api",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node dist/main/server.js",
-    "debug": "node --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
+    "debug": " node --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
     "up": "npm run build && rimraf dist/main/routes/login.routes.js.map && docker compose up",
     "down": "docker compose down",
     "build": "rimraf dist && tsc",
