@@ -30,8 +30,10 @@ services:
       - JWT_SECRET=batata
       - MONGO_USER=savio
       - MONGO_PASSWORD=7anC8Rvcp8UQt6JL
+    # to reflect the changes in the container
+    # slash is to restart the container if any file changes
     volumes:
-      - ./dist:/usr/src/clean-node-api/dist
+      - ./dist/:/usr/src/clean-node-api/dist
       - ./package.json:/usr/src/clean-node-api/package.json
     links:
       - mongo
