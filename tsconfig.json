@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
-    "target": "ES3",
+    "target": "ES2022",
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
