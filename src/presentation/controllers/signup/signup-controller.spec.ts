@@ -6,12 +6,10 @@ import {
   HttpRequest,
   Validation,
   AddAccount,
-} from "./signup-controller-protocols";
-import { ok, serverError, badRequest } from "../../helpers/http/http-helper";
-import {
   Authentication,
   AuthenticationDTO,
-} from "../../../domain/usecases/authentication";
+} from "./signup-controller-protocols";
+import { ok, serverError, badRequest } from "../../helpers/http/http-helper";
 
 const makeFakeHttpRequest = (): HttpRequest => ({
   body: {
@@ -74,8 +72,12 @@ interface SutTypes {
 const makeSut = (): SutTypes => {
   const addAccountStub = makeAddAccount();
   const validationStub = makeValidation();
-  const sut = new SignUpController(addAccountStub, validationStub);
   const authenticationStub = makeAuthenticationStub();
+  const sut = new SignUpController(
+    addAccountStub,
+    validationStub,
+    authenticationStub
+  );
 
   return {
     sut,
@@ -140,8 +142,8 @@ describe("Sing up Controller", () => {
     const authSpy = jest.spyOn(authenticationStub, "auth");
     await sut.handle(makeFakeHttpRequest());
     expect(authSpy).toHaveBeenCalledWith({
-      email: "any_mail@mail.com",
-      password: "any_password",
+      email: "valid_email@mail.com",
+      password: "valid_password",
     });
   });
 });
