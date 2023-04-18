@@ -4,3 +4,4 @@ coverage
 .vscode
 .env
 data
+!src/data
