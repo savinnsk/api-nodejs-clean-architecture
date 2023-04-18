@@ -6,7 +6,7 @@ import {
   AddAccountRepository,
 } from "./db-add-account-protocols";
 
-export class DbAddAccountUseCase implements AddAccount {
+export class DbAddAccount implements AddAccount {
   constructor(
     private readonly hasher: Hasher,
     private readonly addAccountRepository: AddAccountRepository

@@ -4,10 +4,10 @@ import {
   AccountModel,
   AddAccountRepository,
 } from "./db-add-account-protocols";
-import { DbAddAccountUseCase } from "./db-add-account";
+import { DbAddAccount } from "./db-add-account";
 
 interface SutTypes {
-  sut: DbAddAccountUseCase;
+  sut: DbAddAccount;
   hasherStub: Hasher;
   addAccountRepositoryStub: AddAccountRepository;
 }
@@ -48,7 +48,7 @@ const makeHasher = (): Hasher => {
 const makeSut = (): SutTypes => {
   const hasherStub = makeHasher();
   const addAccountRepositoryStub = makeAddAccountRepository();
-  const sut = new DbAddAccountUseCase(hasherStub, addAccountRepositoryStub);
+  const sut = new DbAddAccount(hasherStub, addAccountRepositoryStub);
 
   return {
     sut,
