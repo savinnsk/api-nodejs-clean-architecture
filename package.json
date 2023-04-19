@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon dist/main/server.js",
+    "start": " rimraf dist/main/routes/login.routes.js.map &&  nodemon dist/main/server.js",
     "debug": " nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
     "up": "npm run build && rimraf dist/main/routes/login.routes.js.map && docker compose up",
     "down": "docker compose down",
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
     "test": "jest --passWithNoTests --runInBand --no-cache --forceExit",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
@@ -43,6 +43,7 @@
     "fast-glob": "^3.2.12",
     "jest-environment-node": "27",
     "jsonwebtoken": "^9.0.0",
+    "module-alias": "^2.2.2",
     "mongodb": "^5.0.1",
     "nodemon": "^2.0.21",
     "source-map-support": "^0.5.21",
@@ -50,5 +51,8 @@
   },
   "engines": {
     "node": "18.x"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }

@@ -11,7 +11,7 @@ import {
   ok,
   serverError,
   unauthorized,
-} from "../../helpers/http/http-helper";
+} from "@/presentation/helpers/http/http-helper";
 
 export class LoginController implements Controller {
   constructor(
