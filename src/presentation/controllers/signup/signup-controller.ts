@@ -41,6 +41,7 @@ export class SignUpController implements Controller {
         email: account.email,
         password: account.password,
       });
+      console.log(accessToken);
 
       return ok({ accessToken });
     } catch (error) {
