@@ -1,20 +1,19 @@
-import { SignUpController } from "./signup-controller";
-import { EmailInUseError, ServerError } from "../../errors";
+import { AccountModel } from "@/domain/models/account";
+import { AddAccount, AddAccountModelDTO } from "@/domain/usecases/add-account";
 import {
-  AccountModel,
-  AddAccountModelDTO,
-  HttpRequest,
-  Validation,
-  AddAccount,
   Authentication,
   AuthenticationDTO,
-} from "./signup-controller-protocols";
+} from "@/domain/usecases/authentication";
+import { ServerError, EmailInUseError } from "@/presentation/errors";
 import {
-  ok,
   serverError,
   badRequest,
   forbidden,
-} from "../../helpers/http/http-helper";
+  ok,
+} from "@/presentation/helpers/http/http-helper";
+import { HttpRequest } from "@/presentation/protocols";
+import { Validation } from "@/presentation/protocols/validation-helper";
+import { SignUpController } from "./signup-controller";
 
 const makeFakeHttpRequest = (): HttpRequest => ({
   body: {

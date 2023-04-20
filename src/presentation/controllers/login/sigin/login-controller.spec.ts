@@ -1,17 +1,18 @@
-import { ServerError } from "../../errors";
+import { LoginController } from "./login-controller";
+
+import {
+  Authentication,
+  AuthenticationDTO,
+} from "@/domain/usecases/authentication";
 import {
   badRequest,
   ok,
   serverError,
   unauthorized,
-} from "../../helpers/http/http-helper";
-import { Validation } from "../signup/signup-controller-protocols";
-import { HttpRequest } from "../../protocols";
-import {
-  Authentication,
-  AuthenticationDTO,
-} from "../../../domain/usecases/authentication";
-import { LoginController } from "./login-controller";
+} from "@/presentation/helpers/http/http-helper";
+import { ServerError } from "@/presentation/errors";
+import { HttpRequest } from "@/presentation/protocols";
+import { Validation } from "@/presentation/protocols/validation-helper";
 
 const makeFakeHttpRequest = (): HttpRequest => ({
   body: {
