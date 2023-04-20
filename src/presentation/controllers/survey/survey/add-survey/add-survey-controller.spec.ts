@@ -2,6 +2,11 @@ import { HttpRequest } from "@/presentation/protocols";
 import { AddSurveyController } from "./add-survey-controller";
 import { Validation } from "@/presentation/protocols/validation-helper";
 
+type SutType = {
+  sut: AddSurveyController;
+  validationStub: Validation;
+};
+
 const makeFakeRequest = (): HttpRequest => ({
   body: {
     question: "any_question",
@@ -24,7 +29,7 @@ const makeValidationStub = (): Validation => {
   return new ValidationStub();
 };
 
-const makeSut = () => {
+const makeSut = (): SutType => {
   const validationStub = makeValidationStub();
   const sut = new AddSurveyController(validationStub);
 
