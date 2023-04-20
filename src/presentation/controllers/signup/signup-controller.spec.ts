@@ -18,8 +18,8 @@ import {
 
 const makeFakeHttpRequest = (): HttpRequest => ({
   body: {
-    email: "any_mail@mail.com",
-    password: "any_password",
+    email: "valid_email@mail.com",
+    password: "valid_password",
   },
 });
 
