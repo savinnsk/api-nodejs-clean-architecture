@@ -159,6 +159,7 @@ describe("Sing up Controller", () => {
       .mockReturnValueOnce(
         new Promise((resolve, reject) => reject(new Error()))
       );
+
     const httpResponse = await sut.handle(makeFakeHttpRequest());
     expect(httpResponse).toEqual(serverError(new ServerError(null)));
   });

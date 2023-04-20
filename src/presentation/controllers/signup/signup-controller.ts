@@ -25,7 +25,9 @@ export class SignUpController implements Controller {
     try {
       const error = this.validation.validate(httpRequest.body);
 
-      if (error) return badRequest(error);
+      if (error) {
+        return badRequest(error);
+      }
 
       const { name, email, password } = httpRequest.body;
 
@@ -35,16 +37,18 @@ export class SignUpController implements Controller {
         password,
       });
 
-      if (!account) return forbidden(new EmailInUseError());
+      if (!account) {
+        return forbidden(new EmailInUseError());
+      }
 
       const accessToken = await this.authentication.auth({
-        email: account.email,
-        password: account.password,
+        email,
+        password,
       });
-      console.log(accessToken);
 
-      return ok({ accessToken });
+      return ok(accessToken);
     } catch (error) {
+      console.log(error);
       return serverError(error);
     }
   }
