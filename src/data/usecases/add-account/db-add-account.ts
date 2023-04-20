@@ -15,10 +15,8 @@ export class DbAddAccount implements AddAccount {
   ) {}
 
   async add(accountData: AddAccountModelDTO): Promise<AccountModel> {
-    console.log(accountData);
     const userAlreadyExists =
       await this.loadAccountByEmailRepository.loadByEmail(accountData.email);
-    console.log(userAlreadyExists);
     if (userAlreadyExists) {
       return null;
     }
