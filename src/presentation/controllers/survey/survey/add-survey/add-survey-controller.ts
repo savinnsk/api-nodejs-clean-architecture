@@ -1,6 +1,7 @@
 import { AddSurvey } from "@/domain/usecases/survey/add-survey";
 import {
   badRequest,
+  noContent,
   ok,
   serverError,
 } from "@/presentation/helpers/http/http-helper";
@@ -29,7 +30,7 @@ export class AddSurveyController implements Controller {
         answers,
       });
 
-      return ok({});
+      return noContent();
     } catch (e) {
       return serverError(e);
     }
