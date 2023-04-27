@@ -1,4 +1,4 @@
-import { Authentication } from "@/domain/usecases/authentication";
+import { Authentication } from "@/domain/usecases/login/authentication";
 import {
   badRequest,
   ok,

@@ -1,13 +1,13 @@
-import { LoadAccountByEmailRepository } from "../../../../data/protocols/db/account/load-account-email-repository";
-import { UpdateAccessTokenRepository } from "../../../../data/protocols/db/account/update-access-token-repository";
-import {
-  AddAccountRepository,
-  AccountModel,
-  AddAccountModelDTO,
-  MongoHelper,
-} from "./account-protocols";
+import { AddAccountModelDTO } from "@/domain/usecases/login/add-account";
 
 import { ObjectId } from "mongodb";
+import { AccountModel } from "@/domain/models/account";
+import { MongoHelper } from "../helpers/mongodb-helper";
+import {
+  AddAccountRepository,
+  LoadAccountByEmailRepository,
+} from "@/data/usecases/add-account/db-add-account-protocols";
+import { UpdateAccessTokenRepository } from "@/data/usecases/authentication/db-authentications-protocols";
 export class AccountMongoRepository
   implements
     AddAccountRepository,

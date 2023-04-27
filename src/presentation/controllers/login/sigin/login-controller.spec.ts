@@ -3,7 +3,7 @@ import { LoginController } from "./login-controller";
 import {
   Authentication,
   AuthenticationDTO,
-} from "@/domain/usecases/authentication";
+} from "@/domain/usecases/login/authentication";
 import {
   badRequest,
   ok,

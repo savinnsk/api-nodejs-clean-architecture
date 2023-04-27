@@ -1,5 +1,5 @@
-import { AddAccount } from "@/domain/usecases/add-account";
-import { Authentication } from "@/domain/usecases/authentication";
+import { AddAccount } from "@/domain/usecases/login/add-account";
+import { Authentication } from "@/domain/usecases/login/authentication";
 import { EmailInUseError } from "@/presentation/errors";
 import {
   badRequest,

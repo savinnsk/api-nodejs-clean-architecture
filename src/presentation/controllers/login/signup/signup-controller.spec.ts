@@ -1,9 +1,12 @@
 import { AccountModel } from "@/domain/models/account";
-import { AddAccount, AddAccountModelDTO } from "@/domain/usecases/add-account";
+import {
+  AddAccount,
+  AddAccountModelDTO,
+} from "@/domain/usecases/login/add-account";
 import {
   Authentication,
   AuthenticationDTO,
-} from "@/domain/usecases/authentication";
+} from "@/domain/usecases/login/authentication";
 import { ServerError, EmailInUseError } from "@/presentation/errors";
 import {
   serverError,

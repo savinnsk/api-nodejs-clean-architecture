@@ -1,4 +1,4 @@
-import { AccountModel } from "../models/account";
+import { AccountModel } from "@/domain/models/account";
 
 export type AddAccountModelDTO = {
   name: string;
