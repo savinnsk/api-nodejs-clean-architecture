@@ -1,4 +1,9 @@
-import { ok, serverError } from "@/presentation/helpers/http/http-helper";
+import { AddSurvey } from "@/domain/usecases/survey/add-survey";
+import {
+  badRequest,
+  ok,
+  serverError,
+} from "@/presentation/helpers/http/http-helper";
 import {
   Controller,
   HttpRequest,
@@ -7,11 +12,23 @@ import {
 import { Validation } from "@/presentation/protocols/validation-helper";
 
 export class AddSurveyController implements Controller {
-  constructor(private readonly validation: Validation) {}
+  constructor(
+    private readonly validation: Validation,
+    private readonly addSurvey: AddSurvey
+  ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      this.validation.validate(httpRequest);
+      const error = this.validation.validate(httpRequest);
+
+      if (error) return badRequest(error);
+
+      const { question, answers } = httpRequest.body;
+      await this.addSurvey.add({
+        question,
+        answers,
+      });
+
       return ok({});
     } catch (e) {
       return serverError(e);
