@@ -6,7 +6,5 @@ export class AddSurveyUseCase implements AddSurvey {
 
   async add(data: AddSurveyModel): Promise<void> {
     await this.addSurveyRepository.add(data);
-
-    return new Promise((resolve) => resolve());
   }
 }
