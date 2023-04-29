@@ -3,6 +3,7 @@ import { AddSurveyController } from "./add-survey-controller";
 import { Validation } from "@/presentation/protocols/validation-helper";
 import {
   badRequest,
+  noContent,
   serverError,
 } from "@/presentation/helpers/http/http-helper";
 import { AddSurvey, AddSurveyModel } from "@/domain/usecases/survey/add-survey";
@@ -109,5 +110,11 @@ describe("AddSurvey Controller", () => {
     const httpResponse = await sut.handle(makeFakeRequest());
 
     expect(httpResponse).toEqual(serverError(new ServerError(null)));
+  });
+
+  test("should return 200 if valid credential are provided ", async () => {
+    const { sut } = makeSut();
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(noContent());
   });
 });
