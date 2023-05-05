@@ -65,15 +65,13 @@ describe("AddSurvey Controller", () => {
     const validateSpy = jest.spyOn(validationStub, "validate");
     sut.handle(makeFakeRequest());
     expect(validateSpy).toHaveBeenCalledWith({
-      body: {
-        question: "any_question",
-        answers: [
-          {
-            image: "any_image",
-            answer: "any_answer",
-          },
-        ],
-      },
+      question: "any_question",
+      answers: [
+        {
+          image: "any_image",
+          answer: "any_answer",
+        },
+      ],
     });
   });
 
