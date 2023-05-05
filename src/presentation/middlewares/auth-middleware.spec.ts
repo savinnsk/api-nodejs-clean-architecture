@@ -46,6 +46,6 @@ describe("Auth Middleware", () => {
     const spyLoad = jest.spyOn(loadAccountByTokenStub, "load");
     await sut.handle(makeFakeRequest());
 
-    expect(spyLoad).toHaveBeenCalledWith({ "x-access-token": "any_token" });
+    expect(spyLoad).toHaveBeenCalledWith("any_token");
   });
 });
