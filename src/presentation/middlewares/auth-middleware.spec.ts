@@ -1,10 +1,11 @@
 import { LoadAccountByToken } from "@/domain/usecases/login/load-account-by-token";
 import { AccessDeniedError } from "../errors/access-denied-error";
-import { forbidden, ok } from "../helpers/http/http-helper";
+import { forbidden, ok, serverError } from "../helpers/http/http-helper";
 import { HttpRequest } from "../protocols";
 import { AuthMiddleware } from "./auth-middleware";
 import { AccountModel } from "@/domain/models/account";
 import { resolve } from "path";
+import { rejects } from "assert";
 
 type SutTypes = {
   loadAccountByTokenStub: LoadAccountByToken;
@@ -24,7 +25,10 @@ const makeFakeAccountResponse = (): AccountModel => ({
 
 const makeLoadAccountTokenStub = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
-    async load(accessToken: string): Promise<AccountModel | null> {
+    async load(
+      accessToken: string,
+      role?: string
+    ): Promise<AccountModel | null> {
       return new Promise((resolve) => resolve(makeFakeAccountResponse()));
     }
   }
@@ -75,5 +79,19 @@ describe("Auth Middleware", () => {
     const response = await sut.handle(makeFakeRequest());
 
     expect(response).toEqual(ok({ accountId: "valid_id" }));
+  });
+
+  test("should return 503 if LoadAccountByToken throws", async () => {
+    const { sut, loadAccountByTokenStub } = makeSut();
+
+    jest
+      .spyOn(loadAccountByTokenStub, "load")
+      .mockReturnValueOnce(
+        new Promise((resolve, rejects) => rejects(new Error()))
+      );
+
+    const response = await sut.handle(makeFakeRequest());
+
+    expect(response).toEqual(serverError(new Error()));
   });
 });
