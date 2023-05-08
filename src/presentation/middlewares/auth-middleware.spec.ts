@@ -4,8 +4,6 @@ import { forbidden, ok, serverError } from "../helpers/http/http-helper";
 import { HttpRequest } from "../protocols";
 import { AuthMiddleware } from "./auth-middleware";
 import { AccountModel } from "@/domain/models/account";
-import { resolve } from "path";
-import { rejects } from "assert";
 
 type SutTypes = {
   loadAccountByTokenStub: LoadAccountByToken;
@@ -35,9 +33,9 @@ const makeLoadAccountTokenStub = (): LoadAccountByToken => {
   return new LoadAccountByTokenStub();
 };
 
-const makeSut = (): SutTypes => {
+const makeSut = (role?: string): SutTypes => {
   const loadAccountByTokenStub = makeLoadAccountTokenStub();
-  const sut = new AuthMiddleware(loadAccountByTokenStub);
+  const sut = new AuthMiddleware(loadAccountByTokenStub, role);
 
   return {
     loadAccountByTokenStub,
@@ -51,14 +49,6 @@ describe("Auth Middleware", () => {
     const response = await sut.handle({});
 
     expect(response).toEqual(forbidden(new AccessDeniedError()));
-  });
-
-  test("should call LoadAccountByToken with correct accessToken", async () => {
-    const { sut, loadAccountByTokenStub } = makeSut();
-    const spyLoad = jest.spyOn(loadAccountByTokenStub, "load");
-    await sut.handle(makeFakeRequest());
-
-    expect(spyLoad).toHaveBeenCalledWith("any_token");
   });
 
   test("should return 403 if LoadAccountByToken return null", async () => {
@@ -93,5 +83,14 @@ describe("Auth Middleware", () => {
     const response = await sut.handle(makeFakeRequest());
 
     expect(response).toEqual(serverError(new Error()));
+  });
+
+  test("should call LoadAccountByToken with correct values", async () => {
+    const role = "any_role";
+    const { sut, loadAccountByTokenStub } = makeSut(role);
+    const spyLoad = jest.spyOn(loadAccountByTokenStub, "load");
+    sut.handle(makeFakeRequest());
+
+    expect(spyLoad).toHaveBeenCalledWith("any_token", role);
   });
 });
