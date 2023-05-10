@@ -76,4 +76,10 @@ describe("LoadAccountByToken UseCase", () => {
     await sut.load("any_token", "any_role");
     expect(spy).toHaveBeenCalledWith("any_value");
   });
+
+  test("should loadAccountByTokenRepository return an account on success", async () => {
+    const { sut } = makeSut();
+    const response = await sut.load("any_token", "any_role");
+    expect(response).toEqual(makeFakeAccountResponse());
+  });
 });
