@@ -9,7 +9,7 @@ type SutTypes = {
 
 const makeDecrypterStub = (): Decrypter => {
   class DecrypterStub implements Decrypter {
-    decrypt(value: string): Promise<string> {
+    decrypt(value: string): Promise<string | null> {
       return new Promise((resolve) => resolve("any_value"));
     }
   }
@@ -29,8 +29,17 @@ const makeSut = (): SutTypes => {
 describe("LoadAccountByToken UseCase", () => {
   test("should call decrypter with correct values", () => {
     const { sut, decrypterStub } = makeSut();
-    sut.load("any_token");
     const spy = jest.spyOn(decrypterStub, "decrypt");
+    sut.load("any_token", "any_role");
     expect(spy).toHaveBeenCalledWith("any_token");
+  });
+
+  test("should return null if decrypter return null", async () => {
+    const { sut, decrypterStub } = makeSut();
+    jest
+      .spyOn(decrypterStub, "decrypt")
+      .mockReturnValueOnce(new Promise((resolve) => resolve(null)));
+    const response = await sut.load("any_token");
+    expect(response).toBeNull();
   });
 });
