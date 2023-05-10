@@ -1,4 +1,4 @@
-import { LoadAccountByToken } from "@/domain/usecases/login/load-account-by-token";
+import { ILoadAccountByToken } from "@/domain/usecases/login/load-account-by-token";
 import { AccessDeniedError } from "../errors/access-denied-error";
 import { forbidden, ok, serverError } from "../helpers/http/http-helper";
 import { HttpRequest } from "../protocols";
@@ -6,7 +6,7 @@ import { AuthMiddleware } from "./auth-middleware";
 import { AccountModel } from "@/domain/models/account";
 
 type SutTypes = {
-  loadAccountByTokenStub: LoadAccountByToken;
+  loadAccountByTokenStub: ILoadAccountByToken;
   sut: AuthMiddleware;
 };
 
@@ -21,8 +21,8 @@ const makeFakeAccountResponse = (): AccountModel => ({
   password: "valid_password",
 });
 
-const makeLoadAccountTokenStub = (): LoadAccountByToken => {
-  class LoadAccountByTokenStub implements LoadAccountByToken {
+const makeLoadAccountTokenStub = (): ILoadAccountByToken => {
+  class LoadAccountByTokenStub implements ILoadAccountByToken {
     async load(
       accessToken: string,
       role?: string
