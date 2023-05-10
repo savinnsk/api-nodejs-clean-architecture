@@ -1,9 +1,9 @@
 import { AddAccountModelDTO } from "@/domain/usecases/login/add-account";
 import { DbAddAccount } from "./db-add-account";
-import { AddAccountRepository } from "@/data/protocols/db/account/add-account-repository";
+import { AddAccountRepository } from "@/domain/repository/account/add-account-repository";
 import { AccountModel } from "@/domain/models/account";
-import { LoadAccountByEmailRepository } from "@/data/protocols/db/account/load-account-email-repository";
-import { Hasher } from "@/data/protocols/cryptography/hasher";
+import { LoadAccountByEmailRepository } from "@/domain/repository/account/load-account-email-repository";
+import { Hasher } from "@/domain/cryptography/hasher";
 
 type SutTypes = {
   sut: DbAddAccount;

@@ -1,6 +1,6 @@
 import { AddSurveyModel } from "@/domain/usecases/survey/add-survey";
 import { AddSurveyUseCase } from "./add-survey-usecase";
-import { AddSurveyRepository } from "@/data/protocols/survey/add-survey-repository";
+import { AddSurveyRepository } from "@/domain/repository/survey/add-survey-repository";
 
 type SutType = {
   sut: AddSurveyUseCase;
