@@ -1,12 +1,22 @@
-import { Decrypter } from "@/data/protocols/cryptography/decrypter";
+import { Decrypter } from "@/domain/cryptography/decrypter";
 import { AccountModel } from "@/domain/models/account";
+import { LoadAccountByTokenRepository } from "@/domain/repository/account/load-account-by-token";
 import { ILoadAccountByToken } from "@/domain/usecases/login/load-account-by-token";
 
 export class LoadAccountByTokenUseCase implements ILoadAccountByToken {
-  constructor(private readonly decrypter: Decrypter) {}
+  constructor(
+    private readonly decrypter: Decrypter,
+    private readonly loadAccountByTokenRepository: LoadAccountByTokenRepository
+  ) {}
 
   async load(accessToken: string, role?: string): Promise<AccountModel> {
     const token = await this.decrypter.decrypt(accessToken);
-    throw new Error("Method not implemented.");
+
+    if (token) {
+      const account = await this.loadAccountByTokenRepository.load(token);
+      return account;
+    }
+
+    return null;
   }
 }
