@@ -74,12 +74,21 @@ describe("LoadAccountByToken UseCase", () => {
     const { sut, loadAccountByTokenRepositoryStub } = makeSut();
     const spy = jest.spyOn(loadAccountByTokenRepositoryStub, "load");
     await sut.load("any_token", "any_role");
-    expect(spy).toHaveBeenCalledWith("any_value");
+    expect(spy).toHaveBeenCalledWith("any_value", "any_role");
   });
 
   test("should loadAccountByTokenRepository return an account on success", async () => {
     const { sut } = makeSut();
     const response = await sut.load("any_token", "any_role");
     expect(response).toEqual(makeFakeAccountResponse());
+  });
+
+  test("should return null if loadAccountByTokenRepository return null", async () => {
+    const { sut, loadAccountByTokenRepositoryStub } = makeSut();
+    jest
+      .spyOn(loadAccountByTokenRepositoryStub, "load")
+      .mockReturnValueOnce(new Promise((resolve) => resolve(null)));
+    const response = await sut.load("any_token");
+    expect(response).toBeNull();
   });
 });
