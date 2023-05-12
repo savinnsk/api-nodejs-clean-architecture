@@ -13,7 +13,10 @@ export class LoadAccountByTokenUseCase implements ILoadAccountByToken {
     const token = await this.decrypter.decrypt(accessToken);
 
     if (token) {
-      const account = await this.loadAccountByTokenRepository.load(token, role);
+      const account = await this.loadAccountByTokenRepository.loadByToken(
+        token,
+        role
+      );
       return account;
     }
 

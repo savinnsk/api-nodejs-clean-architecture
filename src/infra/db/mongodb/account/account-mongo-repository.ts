@@ -14,7 +14,7 @@ export class AccountMongoRepository
     UpdateAccessTokenRepository,
     LoadAccountByTokenRepository
 {
-  async load(accessToken: string, role?: string): Promise<AccountModel> {
+  async loadByToken(accessToken: string, role?: string): Promise<AccountModel> {
     const accountCollection = await MongoHelper.getCollection("accounts");
     const account = await accountCollection.findOne({
       email: accessToken,
