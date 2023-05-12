@@ -23,7 +23,11 @@ export const MongoHelper = {
 
   map(collection: any): any {
     const { _id, ...collectionWithoutId } = collection;
-    const bug = Object.assign({}, { id: _id.toString() }, collectionWithoutId);
-    return bug;
+    const collectionWithId = Object.assign(
+      {},
+      { id: _id.toString() },
+      collectionWithoutId
+    );
+    return collectionWithId;
   },
 };
