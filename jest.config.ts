@@ -7,7 +7,9 @@ export default {
   transform: {
     ".+\\.ts$": "ts-jest",
   },
-
+  preset: "ts-jest",
+  moduleDirectories: ["node_modules", "<rootdir>/src"],
+  
   moduleNameMapper: {
     "@/(.*)": "<rootDir>/src/$1",
   },

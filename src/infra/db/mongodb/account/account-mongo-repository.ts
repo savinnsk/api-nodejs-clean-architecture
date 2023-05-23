@@ -17,8 +17,13 @@ export class AccountMongoRepository
   async loadByToken(accessToken: string, role?: string): Promise<AccountModel> {
     const accountCollection = await MongoHelper.getCollection("accounts");
     const account = await accountCollection.findOne({
-      email: accessToken,
-      role: role,
+      accessToken: accessToken,
+      $or : [{
+        role
+      }, {
+        role : "admin"
+      }]
+     
     });
 
     return account && MongoHelper.map(account);
